@@ -13,7 +13,13 @@ class ProductManager {
             code,
             stock
         };
-        this.events.push(producto);
+
+        const validacionCode = this.events.some((value) => {
+            value.code === producto.code
+        })
+
+        validacionCode ? this.events.push(producto) : 'Codigo en uso'
+        
     };
 
     #getMaxId() {
@@ -40,8 +46,13 @@ class ProductManager {
 
 const productoDesafio = new ProductManager();
 
+// Agrego productos al Array:
 productoDesafio.addProduct('Yerba', 'Version suave', 1200, 'Ruta de la imagen de la Yerba', 1313, 50);
 productoDesafio.addProduct('Azucar', 'Light', 1400, 'Ruta de la imagen del Azucar', 1314, 50);
 productoDesafio.addProduct('Fideos', 'Coditos', 750, 'Ruta de la imagen de los Fideos', 1315, 50);
+
+//Muestro el Array completo:
 console.log(productoDesafio.getProducts());
+
+//Muestro el producto filtrado por ID:
 console.log(productoDesafio.getProductsById(2));
