@@ -15,10 +15,14 @@ class ProductManager {
         };
 
         const validacionCode = this.events.some((value) => {
-            value.code === producto.code
-        })
+             return value.code === producto.code
+         })
 
-        validacionCode ? this.events.push(producto) : 'Codigo en uso'
+        if(validacionCode) {
+            console.log('Codigo en uso');
+        } else {
+            this.events.push(producto)
+        }
         
     };
 
@@ -50,6 +54,8 @@ const productoDesafio = new ProductManager();
 productoDesafio.addProduct('Yerba', 'Version suave', 1200, 'Ruta de la imagen de la Yerba', 1313, 50);
 productoDesafio.addProduct('Azucar', 'Light', 1400, 'Ruta de la imagen del Azucar', 1314, 50);
 productoDesafio.addProduct('Fideos', 'Coditos', 750, 'Ruta de la imagen de los Fideos', 1315, 50);
+//Prueba de repetir Code:
+productoDesafio.addProduct('Harina', 'Molinos', 1400, 'Ruta de la imagen de la Harina', 1313, 50)
 
 //Muestro el Array completo:
 console.log(productoDesafio.getProducts());
